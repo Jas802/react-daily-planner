@@ -10,6 +10,10 @@ import Calendar from './Calendar'
 import Weather from './Weather'
 import Home from './Home'
 
+const WEATHER_API_KEY = "570b7f928d8c50ad8439997bee3747d8"
+
+//api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
+
 function App() {
   return (
     <Router>

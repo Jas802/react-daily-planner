@@ -1,6 +1,22 @@
 import React from 'react'
 
 export default function Weather() {
+    constructor(); {
+        super();
+        this.state = {};
+        this.getWeather();
+    }
+
+    const WEATHER_API_KEY = "570b7f928d8c50ad8439997bee3747d8"
+
+    getWeather = async () => {
+        const weatherApiCall = await fetch(`http://api.openweathermap.org/data/2.5/weather?q={city name}&appid=${WEATHER_API_KEY}`)
+
+        const weatherResponse = await weatherApiCall.json();
+
+        console.log(weatherApiCall);
+    }
+
     return (
         <div className="weather-app-container">
             <div className="cards">
