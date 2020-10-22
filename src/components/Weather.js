@@ -1,39 +1,51 @@
 import React from 'react'
 
-export default function Weather() {
-    constructor(); {
+class Weather extends React.Component {
+    constructor() {
         super();
-        this.state = {};
+        this.state = {
+            city: undefined,
+            icon: undefined,
+            main: undefined,
+            fahrenheit: undefined,
+            temp_min: undefined,
+            temp_max: undefined,
+            description: '',
+            error: false
+        };
         this.getWeather();
     }
 
-    const WEATHER_API_KEY = "570b7f928d8c50ad8439997bee3747d8"
-
     getWeather = async () => {
-        const weatherApiCall = await fetch(`http://api.openweathermap.org/data/2.5/weather?q={city name}&appid=${WEATHER_API_KEY}`)
+        const WEATHER_API_KEY = "570b7f928d8c50ad8439997bee3747d8"
+        const weatherApiCall = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=LONDON&appid=${WEATHER_API_KEY}`)
 
         const weatherResponse = await weatherApiCall.json();
 
-        console.log(weatherApiCall);
+        console.log(weatherResponse);
+        this.setState({
+            city: weatherResponse.name
+        })
     }
+    render () {
+        return (
+            <div className="weather-app-container">
+                <div className="cards">
+                    <h2>Weather!</h2>
+                    <h3>{this.props.city}</h3>
+                    <h5 className="py-4">
+                        <i className='wi wi-day-sunny display-1'  />
+                    </h5>
+                    <h1 className="py-2">{this.props.fahrenheit}&deg;</h1>
+                    {/** show temparature range */}
+                    {tempRange(this.props.temp_min, this.props.temp_max)}
 
-    return (
-        <div className="weather-app-container">
-            <div className="cards">
-                <h2>Weather!</h2>
-                <h5 className="py-4">
-                    <i className='wi wi-day-sunny display-1'  />
-                </h5>
-                <h1 className="py-2">25&deg;</h1>
-                {/** show temparature range */}
-                {tempRange(24,19)}
-
-                <h4 className="py-3">Rain</h4>
+                    <h4 className="py-3">{this.props.description}</h4>
+                </div>
             </div>
-        </div>
-    )
+        )
+        }
 }
-
 function tempRange(min,max) {
     return (
         <h3>
@@ -42,3 +54,5 @@ function tempRange(min,max) {
         </h3>
     )
 }
+
+export default Weather
