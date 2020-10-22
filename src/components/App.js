@@ -1,6 +1,5 @@
 import React from 'react';
-import { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 
 import 'weather-icons/css/weather-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -10,8 +9,6 @@ import Calendar from './Calendar'
 import Weather from './Weather'
 import Home from './Home'
 
-//api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
-
 function App() {
   return (
     <Router>
@@ -19,7 +16,10 @@ function App() {
         <header>
           <ul>
             <li>
-            <Link to="/">Login</Link>
+            <Link to="/">Home</Link>
+            </li>
+            <li>
+            <Link to="/login">Login</Link>
             </li>
             <li>
             <Link to="/weather">Weather</Link>
@@ -30,13 +30,37 @@ function App() {
           </ul>
         </header>
         <Switch>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/weather" component={Weather} />
-                <Route exact path="/calendar" component={Calendar} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute path="/weather"><Weather /></PrivateRoute>
+          <PrivateRoute path="/calendar"><Calendar /></PrivateRoute>
         </Switch>
       </div>
     </Router>
   );
 }
 
+function PrivateRoute({ children, ...props}) {
+  return (
+    
+    <Route {...props}
+      render={(props) => 
+        //This is the test of if a user is authenticated:
+        //fetch an API (your own rails get request or Firebase or Netlify) and return the state of authenticated or unauthenticated
+        "Logged In" === "Logged Out" ?
+        //successfully authenticated:
+        children :  
+        //failed the authenticated test:
+        <Redirect 
+        to={{
+          pathname: "/",
+          state: { from: props.location }
+        }}
+         />
+      
+      }
+    
+    />
+  )
+}
 export default App;
