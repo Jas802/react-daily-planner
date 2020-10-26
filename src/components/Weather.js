@@ -24,7 +24,8 @@ class Weather extends React.Component {
 
         console.log(weatherResponse);
         this.setState({
-            city: weatherResponse.name
+            city: weatherResponse.name,
+            fahrenheit: weatherResponse.main.temp
         })
     }
     render () {

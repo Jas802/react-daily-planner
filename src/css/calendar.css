@@ -1,0 +1,12 @@
+.calendar-container,
+.calendar,
+.calendar-header,
+td,
+tr {
+    padding: 0;
+    margin: 0;
+}
+
+.calendar-container {
+    border: 2px solid skyblue;
+}

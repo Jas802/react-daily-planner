@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Login() {
-    return (
+class Login extends Component {
+    render() {
+    return(
         <div>
             <form>
                 <h1>Login</h1>
@@ -12,5 +13,8 @@ export default function Login() {
                 <input type="submit" value="Login" />
             </form>
         </div>
-    )
+        )
+    }
 }
+
+export default Login
