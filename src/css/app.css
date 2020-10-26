@@ -1,1 +1,16 @@
 @import 'calendar.css';
+
+.horizontal-list {
+    margin: 0;
+    padding: 0;
+    color: #1ab2ff;
+    background-color: #ff8080;
+}
+.horizontal-list li {
+    display: inline;
+    padding: 10px 40px;
+    color: #1ab2ff;
+}
+.horizontal-list li:hover {
+    background-color: skyblue;
+}

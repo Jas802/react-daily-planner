@@ -9,16 +9,16 @@ class Calendar extends React.Component {
         this.style.width = this.width
     }
 
-    style = {
-        position: "relative",
-        margin: "50px auto"
-    }
-
     state = {
         dateContext: moment(),
         today: moment(),
         showMonthPopup: false,
         showYearPopup: false
+    }
+
+    style = {
+        position: "relative",
+        margin: "50px auto"
     }
 
     weekdays = moment.weekdays(); // All weekdays
@@ -56,7 +56,7 @@ class Calendar extends React.Component {
 
         let blanks = [];
         for (let i = 0; i < this.firstDayOfMonth(); i++) { //loops through start of month to create empty day slots
-            blanks.push(<td className="emptySlot">
+            blanks.push(<td key={i * 80} className="emptySlot">
                 {""}
             </td>
             )
@@ -99,7 +99,7 @@ class Calendar extends React.Component {
             )
         });
     return (
-        <div className="calendar-container">
+        <div className="calendar-container" style={this.style}>
             <table className="calendar">
                 <thead>
                     <tr className="calendar-header"></tr>

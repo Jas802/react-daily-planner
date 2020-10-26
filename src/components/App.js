@@ -15,7 +15,7 @@ function App() {
     <Router>
       <div>
         <header>
-          <ul>
+          <ul className="horizontal-list">
             <li>
             <Link to="/">Home</Link>
             </li>

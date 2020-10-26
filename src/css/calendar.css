@@ -17,3 +17,13 @@ tr {
     border-collapse: collapse;
     width: 100%;
 }
+
+.calendar-header {
+    border-bottom: 1px dashed skyblue;
+    font-size: 1.6em;
+}
+
+.calendar-header td {
+    border-spacing: 0;
+    padding-left: 5px;
+}
