@@ -6,6 +6,12 @@ class Calendar extends React.Component {
         super(props);
         this.width = props.width || "350px";
         this.style = props.style || {};
+        this.style.width = this.width
+    }
+
+    style = {
+        position: "relative",
+        margin: "50px auto"
     }
 
     state = {
@@ -26,7 +32,7 @@ class Calendar extends React.Component {
         return this.state.dateContext.format("MMMM");
     }
     daysInmonth = () => {
-        return this.state.dateContext.daysInmonth();
+        return this.state.dateContext.daysInMonth();
     }
     currentDate = () => {
         return this.state.dateContext.get("date");
@@ -42,10 +48,68 @@ class Calendar extends React.Component {
 
     
     render() {
+        let weekdays = this.weekdaysShort.map((day) => {
+            return(
+                <td key={day} className="week-day">{day}</td> //creates table data for each day
+            )
+        })
+
+        let blanks = [];
+        for (let i = 0; i < this.firstDayOfMonth(); i++) { //loops through start of month to create empty day slots
+            blanks.push(<td className="emptySlot">
+                {""}
+            </td>
+            )
+        }
+
+        let daysInmonth = []
+        for (let d = 1; d < this.daysInmonth(); d++) {
+            let className = (d === this.currentDay() ? "day current-day": "day");
+            daysInmonth.push(
+                <td key={d} className={className} >
+                    <span>{d}</span>
+                </td>
+            )
+        }
+
+        var totalSlots = [...blanks, ...daysInmonth];
+        let rows = []
+        let cells = []
+
+        totalSlots.forEach((row, i) => {
+            if((i % 7) !== 0) { //if index is NOT divisible by 7 starts, new row
+                cells.push(row);
+            } else {
+                let insertRow = cells.slice();
+                rows.push(insertRow)
+                cells = [];
+                cells.push(row)
+            }
+            if (i === totalSlots.length - 1) {
+                let insertRow = cells.slice();
+                rows.push(insertRow);
+            }
+        });
+
+        let trElements = rows.map((d, i) => {
+            return(
+                <tr key={i*100}>
+                    {d}
+                </tr>
+            )
+        });
     return (
         <div className="calendar-container">
             <table className="calendar">
-                
+                <thead>
+                    <tr className="calendar-header"></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {weekdays}
+                    </tr>
+                    {trElements}
+                </tbody>
             </table>
         </div>
         )
