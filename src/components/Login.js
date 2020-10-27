@@ -1,20 +1,41 @@
 import React, { Component } from 'react'
 
-class Login extends Component {
+export default class Login extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            username: ""
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleSubmit(event) {
+        console.log("form submitted")
+        event.preventDefault();
+    }
+
+    handleChange(event) {
+        console.log("handle change", event)
+    }
+    
     render() {
     return(
-        <div>
-            <form>
-                <h1>Login</h1>
-                <div>
-                <input type="text" name="username" placeholder="Username" />
-                <label htmlFor="username">Username</label>
-                </div>
-                <input type="submit" value="Login" />
+        <div className="login-form">
+            <form onSubmit={this.handleSubmit} >
+                <input 
+                    type="username" 
+                    name="username" 
+                    placeholder="Username" 
+                    value={this.state.username} 
+                    onChange={this.handleChange} 
+                    required 
+                />
+                <button type="submit">Login</button>
             </form>
         </div>
         )
     }
 }
-
-export default Login
