@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Login extends Component {
     constructor(props) {
@@ -13,12 +14,24 @@ export default class Login extends Component {
     }
 
     handleSubmit(event) {
-        console.log("form submitted")
+        axios.post("http://localhost:3001/api/registrations", {
+            user: { //data argument must be passed in as object
+                username: this.state.username
+            }
+        },
+        { withCredentials: true} // tells API to set cookie in the client
+        ).then(response => {
+            console.log("registration response", response);
+        }).catch(error => {
+            console.log("registration error", error)
+        })
         event.preventDefault();
     }
 
     handleChange(event) {
-        console.log("handle change", event)
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
     
     render() {
