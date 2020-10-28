@@ -13,7 +13,8 @@ class Calendar extends React.Component {
         dateContext: moment(),
         today: moment(),
         showMonthPopup: false,
-        showYearPopup: false
+        showYearPopup: false,
+        selectedDay: null
     }
 
     style = {
@@ -31,7 +32,7 @@ class Calendar extends React.Component {
     month = () => {
         return this.state.dateContext.format("MMMM");
     }
-    daysInmonth = () => {
+    daysInMonth = () => {
         return this.state.dateContext.daysInMonth();
     }
     currentDate = () => {
@@ -55,9 +56,27 @@ class Calendar extends React.Component {
         })
     }
 
+    nextMonth = () => {
+        let dateContext = Object.assign({}, this.state.dateContext);
+        dateContext = moment(dateContext).add(1, "month");
+        this.setState({
+            dateContext: dateContext
+        });
+        this.props.onNextMonth && this.props.onNextMonth();
+    }
+
+    prevMonth = () => {
+        let dateContext = Object.assign({}, this.state.dateContext);
+        dateContext = moment(dateContext).subtract(1, "month");
+        this.setState({
+            dateContext: dateContext
+        });
+        this.props.onNextMonth && this.props.onNextMonth();
+    }
+
     onSelectChange = (e, data) => {
         this.setMonth(data);
-        this.props.onMonthChange && this.props.onMonthChange();
+        this.props.onPrevChange && this.props.onPrevChange();
     }
 
     SelectList = (props) => {
@@ -145,6 +164,7 @@ class Calendar extends React.Component {
         )
     }
 
+
     render() {
         let weekdays = this.weekdaysShort.map((day) => {
             return(
@@ -160,17 +180,18 @@ class Calendar extends React.Component {
             )
         }
 
-        let daysInmonth = []
-        for (let d = 1; d < this.daysInmonth(); d++) {
-            let className = (d === this.currentDay() ? "day current-day": "day");
-            daysInmonth.push(
-                <td key={d} className={className} >
+        let daysInMonth = [];
+        for (let d = 1; d < this.daysInMonth(); d++) {
+            let className = (d == this.currentDay() ? "day current-day": "day");
+            let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
+            daysInMonth.push(
+                <td key={d} className={className + selectedClass} >
                     <span>{d}</span>
                 </td>
             )
         }
 
-        var totalSlots = [...blanks, ...daysInmonth];
+        var totalSlots = [...blanks, ...daysInMonth];
         let rows = []
         let cells = []
 
@@ -205,6 +226,14 @@ class Calendar extends React.Component {
                             <this.MonthNav />
                             {" "}
                             <this.YearNav />
+                        </td>
+                        <td colSpan="2" className="nav-month">
+                            <i className="fas fa-chevron-left"
+                                onClick={(e) => {this.prevMonth()}}>
+                            </i>
+                            <i className="fas fa-chevron-right"
+                                onClick={(e) => {this.nextMonth()}}>
+                            </i>
                         </td>
                     </tr>
                 </thead>

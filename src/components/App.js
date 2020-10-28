@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 
 import 'weather-icons/css/weather-icons.css'
@@ -10,7 +10,26 @@ import Calendar from './Calendar'
 import Weather from './Weather'
 import Home from './Home'
 
-function App() {
+export default class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      loggedInStatus: 'NOT_LOGGED_IN',
+      user: {}
+    }
+
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin(data) {
+  this.setState({
+    loggedInStatus: "LOGGED_IN",
+    user: data
+  })
+}
+  
+  render() {
   return (
     <Router>
       <div>
@@ -31,15 +50,20 @@ function App() {
           </ul>
         </header>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route 
+            exact 
+            path={"/"} 
+            render={props => (
+              <Home {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus} />
+            )} />
           <Route exact path="/login" component={Login} />
           <PrivateRoute path="/weather">
             <Weather 
-              // city={this.state.city} 
-              // fahrenheit={this.state.fahrenheit}
-              // temp_max={this.state.temp_max}
-              // temp_min={this.state.temp_min}
-              // description={this.state.description}
+              city={this.state.city} 
+              fahrenheit={this.state.fahrenheit}
+              temp_max={this.state.temp_max}
+              temp_min={this.state.temp_min}
+              description={this.state.description}
               />
             </PrivateRoute>
           <PrivateRoute path="/calendar"><Calendar /></PrivateRoute>
@@ -47,6 +71,7 @@ function App() {
       </div>
     </Router>
   );
+}
 }
 
 function PrivateRoute({ children, ...props}) {
@@ -72,4 +97,3 @@ function PrivateRoute({ children, ...props}) {
     />
   )
 }
-export default App;

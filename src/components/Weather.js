@@ -17,6 +17,7 @@ class Weather extends React.Component {
     }
 
     getWeather = async () => {
+        //e.preventDefault();
         const WEATHER_API_KEY = "570b7f928d8c50ad8439997bee3747d8"
         const weatherApiCall = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=LONDON&appid=${WEATHER_API_KEY}`)
 

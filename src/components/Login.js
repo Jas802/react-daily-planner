@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default class Login extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             username: ""
@@ -21,6 +21,10 @@ export default class Login extends Component {
         },
         { withCredentials: true} // tells API to set cookie in the client
         ).then(response => {
+            if (response.data.status === 'created') {
+
+            }
+            this.props.handleSuccesfulAuth(response.data)
             console.log("registration response", response);
         }).catch(error => {
             console.log("registration error", error)
