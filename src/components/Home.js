@@ -9,17 +9,17 @@ export default class Home extends Component {
     }
 
     handleSuccessfulAuth(data) {
-        this.props.handlLogin(data);
-        this.props.history.push("/login")
+        console.log("auth home")
+        this.props.handleLogin(data);
+        this.props.history.push("/calendar")
     }
 
     render() {
     return (
         <div>
             <h2>Home Page!</h2>
-            <h2>Status: {this.props.loggedInStatus} </h2>
-            <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
-            
+            {this.props.loggedInStatus ? "Welcome! You are logged in" : <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />  
+    }
         </div>
         )
     }

@@ -10,12 +10,14 @@ import Calendar from './Calendar'
 import Weather from './Weather'
 import Home from './Home'
 
+let isLoggedIn = false;
+
 export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      loggedInStatus: 'NOT_LOGGED_IN',
+      loggedInStatus: false,
       user: {}
     }
 
@@ -23,11 +25,11 @@ export default class App extends Component {
   }
 
   handleLogin(data) {
-  this.setState({
-    loggedInStatus: "LOGGED_IN",
-    user: data
-  })
-}
+    this.setState({
+      loggedInStatus: true,
+      user: data
+    })
+  }
   
   render() {
   return (
@@ -78,20 +80,25 @@ function PrivateRoute({ children, ...props}) {
   return (
     
     <Route {...props}
-      render={(props) => 
-        //This is the test of if a user is authenticated:
-        //fetch an API (your own rails get request or Firebase or Netlify) and return the state of authenticated or unauthenticated
-        "Logged In" === "Logged In" ?
-        //successfully authenticated:
-        children :  
-        //failed the authenticated test:
-        <Redirect 
-        to={{
-          pathname: "/",
-          state: { from: props.location }
-        }}
-         />
-      
+    
+      render={(props) => {
+        //console.log(props.isLoggedIn);
+        return(
+          //This is the test of if a user is authenticated:
+          //fetch an API (your own rails get request or Firebase or Netlify) and return the state of authenticated or unauthenticated
+          true == true ?
+          //successfully authenticated:
+          children :  
+          //failed the authenticated test:
+          <Redirect 
+          to={{
+            pathname: "/",
+            state: { from: props.location }
+          }}
+          />
+        )  
+          
+        }
       }
     
     />
