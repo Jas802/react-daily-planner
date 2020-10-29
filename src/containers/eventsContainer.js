@@ -24,5 +24,33 @@ class EventsContainer extends Component {
         }
     }
 
-    
+    updateEvent = (e, id) => {
+        axios.put(`http://localhost3001/api/events/${id}`, {event: {done: e.target.checked}})
+        .then(response => {
+            this.props.dispatch(toggleEvent(id))
+        })
+        .catch(error => console.log(error))
+    }
+
+    deleteEvent = (id) => {
+        axios.delete(`http://localhost3001/api/events/${id}`)
+        .then(response => {
+            this.props.dispatch(deleteEvent(id))
+        })
+        .catch(error => console.log(error))
+    }
+
+    componentDidMount() {
+        this.getEvents();
+    }
+
+    render () {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
+
+
 }
