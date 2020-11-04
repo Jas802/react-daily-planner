@@ -9,6 +9,7 @@ export default class UsernameForm extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     }
 
     handleChange(event) {
@@ -16,11 +17,16 @@ export default class UsernameForm extends Component {
             [event.target.name]: event.target.value
         })
     }
+    handleLoginSubmit(event){
+        event.preventDefault();
+        this.props.handleSubmit(this.state.username);
+        this.setState({username: ""});
+    }
     
     render() {
     return(
         <div className="login-form">
-            <form onSubmit={(event) => this.props.handleSubmit(event, this.state.username)} >
+            <form onSubmit={this.handleLoginSubmit} >
                 <input 
                     type="username" 
                     name="username" 

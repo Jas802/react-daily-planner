@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { loadEvents, addEvent, toggleEvent, deleteEvent } from '../actions/actionCreators';
+import EventForm from '../components/EventForm';
+import EventList from '../components/EventList';
 
 class EventsContainer extends Component {
 
@@ -14,9 +16,9 @@ class EventsContainer extends Component {
     }
 
     createEvent = (e) => {
-        if (e.key ==='Enter' && !(this.getSnapshotBeforeUpdate.value === '')) {
+        if (e.key ==='Enter' && !(this.getTitle.value === '')) {
             axios.post('http://localhost3001/api/events', {event: {notes: this.getNotes.value}})
-            .then(reponse => {
+            .then(response => {
                 this.props.dispatch(addEvent(response.data.id, response.date.notes))
                 TouchList.getNotes.value = '';
             })
@@ -46,11 +48,22 @@ class EventsContainer extends Component {
 
     render () {
         return (
-            <div>
-                
+            <div className="events-container">
+                <EventForm createEvent={this.createEvent} />
+                <EventList 
+                    events={this.props.events}
+                    updateEvent={this.updateEvent}
+                    deleteEvent={this.deleteEvent}
+                />
             </div>
         )
     }
-
-
 }
+
+const mapStateToProps = (state) => {
+    return {
+        events: state.events
+    }
+}
+
+export default connect(mapStateToProps)(EventsContainer)

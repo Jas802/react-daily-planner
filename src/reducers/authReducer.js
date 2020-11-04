@@ -1,13 +1,13 @@
-import * as actions from '../actions/actionTypes';
+import { AUTHENTICATED, UNAUTHENTICATED} from '../actions/actionTypes';
 
-function authReducer(state = [], action)
+function authReducer(state = false, action)
 {
     switch(action.type) {
-        case actions.AUTHENTICATED:
-            return { ...state, authenticated: true};
+        case AUTHENTICATED:
+            return true;
 
-        case actions.UNAUTHENTICATED:
-            return { state: [], authenticated: false, error: action.error};
+        case UNAUTHENTICATED:
+            return false;//, error: action.error};
 
         default:
             return state;

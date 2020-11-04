@@ -1,19 +1,19 @@
 import * as actions from '../actions/actionTypes';
 
 export function loadEvents(events) {
-    return { type: LOAD_EVENTS, events: events }
+    return { type: actions.LOAD_EVENTS, events: events }
 }
 
 export function addEvent(id, notes) {
-    return { type: ADD_EVENT, id: id, notes: notes}
+    return { type: actions.ADD_EVENT, id: id, notes: notes}
 }
 
 export function toggleEvent(index) {
-    return { type: TOGGLE_EVENT, index: index }
+    return { type: actions.TOGGLE_EVENT, index: index }
 }
 
 export function deleteEvent(index) {
-    return { type: DELETE_TODO, index: index }
+    return { type: actions.DELETE_EVENT, index: index }
 }
 
 //
