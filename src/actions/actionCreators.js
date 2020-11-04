@@ -8,9 +8,9 @@ export function addEvent(id, notes) {
     return { type: actions.ADD_EVENT, id: id, notes: notes}
 }
 
-export function toggleEvent(index) {
-    return { type: actions.TOGGLE_EVENT, index: index }
-}
+// export function toggleEvent(index) {
+//     return { type: actions.TOGGLE_EVENT, index: index }
+// }
 
 export function deleteEvent(index) {
     return { type: actions.DELETE_EVENT, index: index }

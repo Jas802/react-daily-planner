@@ -1,4 +1,5 @@
-import { LOAD_EVENTS, ADD_EVENT, TOGGLE_EVENT, DELETE_EVENT } from '../actions/actionTypes';
+import { LOAD_EVENTS, ADD_EVENT, DELETE_EVENT } from '../actions/actionTypes';
+//TOGGLE_EVENT,
 
 function eventsReducer(state=[], action)
 {
@@ -12,15 +13,14 @@ function eventsReducer(state=[], action)
                 {
                     id: action.id,
                     notes: action.notes,
-                    done: false
                 }
             ];
 
-        case TOGGLE_EVENT:
-            return state.map(event => (event.id === action.index)
-            ? {...event, done: !event.done}
-            : event
-        );
+        // case TOGGLE_EVENT:
+        //     return state.map(event => (event.id === action.index)
+        //     ? {...event, done: !event.done}
+        //     : event
+        // );
 
         case DELETE_EVENT:
             return state.filter(event => event.id !== action.index);

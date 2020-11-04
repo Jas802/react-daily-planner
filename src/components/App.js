@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 import { Alert } from 'react-bootstrap';
 
-import 'weather-icons/css/weather-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../css/app.css'
 
 import EventsContainer from '../containers/EventsContainer'
+import WeatherList from '../containers/WeatherList'
 import Login from './Login'
 import SignUp from './SignUp'
 import Calendar from './Calendar'
-import WeatherList from '../containers/WeatherList'
 import Home from './Home'
-import { bindActionCreators } from 'redux'
 
 import { authenticated } from '../actions/actionCreators';
 
@@ -21,22 +20,8 @@ import { authenticated } from '../actions/actionCreators';
 class App extends Component {
   constructor() {
     super();
-
-    // this.state = {
-    //   loggedInStatus: false,
-    //   user: {}
-    // }
-
-    //this.handleLogin = this.handleLogin.bind(this);
     this.handledAuthenticateUser = this.handledAuthenticateUser.bind(this);
   }
-
-  // handleLogin(data) {
-  //   this.setState({
-  //     loggedInStatus: true,
-  //     user: data
-  //   })
-  // }
 
   loginAlert() {
     return (

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux'
-import { loadEvents, addEvent, toggleEvent, deleteEvent } from '../actions/actionCreators';
+import { loadEvents, addEvent, deleteEvent } from '../actions/actionCreators';
 import EventForm from '../components/EventForm';
 import EventList from '../components/EventList';
+//toggleEvent,
 
 class EventsContainer extends Component {
 
@@ -26,13 +27,13 @@ class EventsContainer extends Component {
         }
     }
 
-    updateEvent = (e, id) => {
-        axios.put(`http://localhost3001/api/events/${id}`, {event: {done: e.target.checked}})
-        .then(response => {
-            this.props.dispatch(toggleEvent(id))
-        })
-        .catch(error => console.log(error))
-    }
+    // updateEvent = (e, id) => {
+    //     axios.put(`http://localhost3001/api/events/${id}`, {event: {done: e.target.checked}})
+    //     .then(response => {
+    //         this.props.dispatch(toggleEvent(id))
+    //     })
+    //     .catch(error => console.log(error))
+    // }
 
     deleteEvent = (id) => {
         axios.delete(`http://localhost3001/api/events/${id}`)

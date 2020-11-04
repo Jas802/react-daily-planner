@@ -4,12 +4,17 @@ import { Table } from 'react-bootstrap';
 import WeatherForm from './WeatherForm';
 
 class WeatherList extends Component {
+    calcFahrenheit(temp) {
+        let far = Math.floor(temp * 9/5 - 459.67)
+        return far;
+    }
+
     renderWeather (){
-        // debugger
+        //debugger
        return this.props.weather.map(cityData => {
             const city = cityData.name
-            const temp = cityData.main.temp//convert to F
-            const description = cityData.weather.description 
+            const temp = this.calcFahrenheit(cityData.main.temp)//convert to F
+            const description = cityData.weather[0].description 
 
             return (
                 <tr key={ cityData } >
@@ -21,13 +26,11 @@ class WeatherList extends Component {
         })
     }
 
-    calcFahrenheit(temp) {
-        let far = Math.floor(temp * 9/5 - 459.67)
-        return far;
-    }
+    
     // K * 9/5 - 459.67
 
     render () {
+        //debugger
         return (
             <div>
                 <WeatherForm />
