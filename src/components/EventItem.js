@@ -5,23 +5,19 @@ class EventItem extends Component {
         super(props);
     }
 
-    updateEvent = (e, id) => {
-        this.props.updateEvent({id: id, checked: e.target.checked})
-    }
-
     deleteEvent = (id) => {
         this.props.deleteEvent(id)
     }
 
     render() {
         const event = this.props.event;
+        console.log(event);
+        
         return (
             <li className="event" key={event.id} id={event.id}>
-                {/* <input className="eventCheckbox" type="checkbox"
-                checked={event.done} onChange={(e) => this.updateEvent(e, event.id)} /> */}
-                <label className="eventLabel">{event.note}</label>
+                <label className="eventLabel">{event.notes}</label>
                 <span className="deleteEventBtn" onClick={(e) => this.deleteEvent(event.id)}>
-                    x
+                    &times;
                 </span>
             </li>
         )

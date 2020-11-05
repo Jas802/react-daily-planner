@@ -8,6 +8,7 @@ function eventsReducer(state=[], action)
             return action.events;
 
         case ADD_EVENT:
+            //debugger
             return [
                 ...state,
                 {
@@ -15,12 +16,6 @@ function eventsReducer(state=[], action)
                     notes: action.notes,
                 }
             ];
-
-        // case TOGGLE_EVENT:
-        //     return state.map(event => (event.id === action.index)
-        //     ? {...event, done: !event.done}
-        //     : event
-        // );
 
         case DELETE_EVENT:
             return state.filter(event => event.id !== action.index);

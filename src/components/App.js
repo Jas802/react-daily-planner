@@ -42,6 +42,12 @@ class App extends Component {
   handledAuthenticateUser(){
     this.props.authenticated();
   }
+
+  componentDidMount() {
+    if (localStorage.loggedIn) {
+      this.props.authenticated();
+    }
+  }
   
   render() {
     if (this.props.auth.authenticated === false) {

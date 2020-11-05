@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'react-bootstrap';
+//import { Table } from 'react-bootstrap';
 import WeatherForm from './WeatherForm';
 
 class WeatherList extends Component {

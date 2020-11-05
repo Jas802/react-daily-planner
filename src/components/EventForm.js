@@ -3,13 +3,27 @@ import React, { Component } from 'react'
 class EventForm extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            note: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        //  arrow function will make the bind: this.createEvent = this.createEvent.bind(this);
     }
 
     createEvent = (e) => {
-        if (e.key === 'Enter' && !(this.getNote.value === '')) {
-            this.props.createEvent(this.getNote.value)
-            this.getNote.value = '';
+        e.preventDefault();
+        if (!(this.state.note === '')) {
+            this.props.createEvent(this.state.note);
+            this.setState({
+                note: ''
+            });
         }
+    }
+    handleChange(e){
+        const note = e.target.value;   
+        this.setState({
+            note
+        })
     }
 
     render() {
@@ -18,10 +32,10 @@ class EventForm extends Component {
                 <div className="form-header">
                     <h1>Event List</h1>
                 </div>
-                <div className="input-container">
-                    <input className="event-input" type="text" placeholder="Add an event"
-                    onKeyPress={this.createEvent} ref={(input)=>this.getNote = input} />
-                </div>
+                <form className="input-container" onSubmit={this.createEvent}>
+                    <input className="event-input" type="text" placeholder="Add an event" name="notes"
+                     onChange={this.handleChange} />
+                </form>
             </div>
         )
     }

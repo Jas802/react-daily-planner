@@ -18,10 +18,11 @@ export default class Login extends Component {
                 username
             }
         },
-        // { withCredentials: true} // tells API to set cookie in the client
+         //{ withCredentials: true} // tells API to set cookie in the client
         ).then(response => {
             if (response.data.status === 'created') {
                 this.props.handleSuccessfulAuth();
+                localStorage.setItem("loggedIn", true);
             } else {
                 this.setState({invalidUsername: true})
             }
