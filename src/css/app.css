@@ -1,5 +1,4 @@
 @import 'calendar.css';
-@import 'login.css';
 @import 'weather.css';
 @import 'event.css';
 
@@ -12,6 +11,7 @@
 .horizontal-list li {
     display: inline;
     padding: 10px 40px;
+    font-family: Tahoma, sans-serif;
     color: #1ab2ff;
 }
 .horizontal-list li:hover {

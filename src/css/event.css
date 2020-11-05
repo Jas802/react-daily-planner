@@ -3,6 +3,11 @@ ul.eventList {
     align-items: center;
 }
 
+h3.event-default {
+    text-align: center;
+    font-family: Tahoma;
+}
+
 li.event {
     list-style-type: none;
     font-family: Tahoma;

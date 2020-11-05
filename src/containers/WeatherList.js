@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Table } from 'react-bootstrap';
 import WeatherForm from './WeatherForm';
 
 class WeatherList extends Component {
@@ -10,7 +9,6 @@ class WeatherList extends Component {
     }
 
     renderWeather (){
-        //debugger
        return this.props.weather.map(cityData => {
             const city = cityData.name
             const temp = this.calcFahrenheit(cityData.main.temp)//convert to F

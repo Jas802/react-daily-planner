@@ -1,58 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import { Alert } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../css/app.css'
 
 import EventsContainer from '../containers/EventsContainer'
 import WeatherList from '../containers/WeatherList'
-import Login from './Login'
-import SignUp from './SignUp'
 import Calendar from './Calendar'
 import Home from './Home'
 
-import { authenticated } from '../actions/actionCreators';
-
-
 class App extends Component {
-  constructor() {
-    super();
-    this.handledAuthenticateUser = this.handledAuthenticateUser.bind(this);
-  }
-
-  loginAlert() {
-    return (
-      <Alert bsStyle="danger">
-        <strong>Login Please!</strong>
-        <Link to='/login'>Login</Link>
-      </Alert>
-    )
-  }
-
-  successAlert() {
-    return (
-      <Alert bsStyle="success">
-        <strong>Welcome!</strong>
-      </Alert>
-    )
-  }
-  handledAuthenticateUser(){
-    this.props.authenticated();
-  }
-
-  componentDidMount() {
-    if (localStorage.loggedIn) {
-      this.props.authenticated();
-    }
-  }
   
   render() {
-    if (this.props.auth.authenticated === false) {
-        return <this.loginAlert />;
-    }
     return (
       <Router>
         <div>
@@ -60,12 +20,6 @@ class App extends Component {
             <ul className="horizontal-list">
               <li>
               <Link to="/">Home</Link>
-              </li>
-              <li>
-                { this.props.auth ? 
-                  <Link to="/logout">Logout</Link> :
-                  <Link to="/login">Login</Link>
-                }
               </li>
               <li>
               <Link to="/weather">Weather</Link>
@@ -79,27 +33,7 @@ class App extends Component {
             </ul>
           </header>
           <Switch>
-            <Route 
-              exact 
-              path={"/"} 
-              // render={props => (
-              //   <Home {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus} />
-              // )} 
-              />
-            <Route
-              exact
-              path="/login"
-              render={props => (
-                <Login {...props} handleSuccessfulAuth={this.handledAuthenticateUser} auth={this.props.auth}/>
-              )} 
-             />
-             <Route
-              exact
-              path="/signup"
-              render={props => (
-                <SignUp {...props} handleSuccessfulAuth={this.handledAuthenticateUser} />
-              )} 
-             />
+            <Route exact path="/" component={Home} />
             <Route path="/weather" component={WeatherList} />
             <Route path="/calendar" component={Calendar} />
             <Route path="/events" component={EventsContainer} />
@@ -138,17 +72,14 @@ class App extends Component {
 //     />
 //   )
 // }
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ authenticated }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ authenticated }, dispatch);
+// }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     auth: state.auth
+//   }
+// }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default connect()(App)

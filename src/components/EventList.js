@@ -11,7 +11,7 @@ class EventList extends Component {
                 />
             )
         }) :
-        <h3>You have no notes</h3>;
+        <h3 className="event-default">You have no notes</h3>;
     
         
     return (

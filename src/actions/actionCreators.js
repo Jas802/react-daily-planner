@@ -13,11 +13,3 @@ export function deleteEvent(index) {
 }
 
 //
-
-export function authenticated() {
-    return { type: actions.AUTHENTICATED }
-}
-
-export function unauthenticated (error) {
-    return { type: actions.UNAUTHENTICATED, error: error }
-}
