@@ -30,10 +30,10 @@ class EventForm extends Component {
         return(
             <div>
                 <div className="form-header">
-                    <h1>Event List</h1>
+                    <h1>Notes</h1>
                 </div>
                 <form className="input-container" onSubmit={this.createEvent}>
-                    <input className="event-input" type="text" placeholder="Add an event" name="notes"
+                    <input className="event-input" type="text" placeholder="Add a note" name="notes"
                      onChange={this.handleChange} />
                 </form>
             </div>

@@ -8,7 +8,6 @@ function eventsReducer(state=[], action)
             return action.events;
 
         case ADD_EVENT:
-            //debugger
             return [
                 ...state,
                 {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
 class EventItem extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     deleteEvent = (id) => {
         this.props.deleteEvent(id)
@@ -11,7 +11,6 @@ class EventItem extends Component {
 
     render() {
         const event = this.props.event;
-        console.log(event);
         
         return (
             <li className="event" key={event.id} id={event.id}>

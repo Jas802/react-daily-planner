@@ -74,7 +74,7 @@ class App extends Component {
               <Link to="/calendar">Calendar</Link>
               </li>
               <li>
-                <Link to="/events">Events</Link>
+                <Link to="/events">Notes</Link>
               </li>
             </ul>
           </header>

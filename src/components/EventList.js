@@ -7,12 +7,11 @@ class EventList extends Component {
         const eventUL = events.length ? events.map((event) => {
             return ( 
                 <EventItem event={event} key={event.id} id={event.id}
-                    //updateEvent={this.props.updateEvent}
                     deleteEvent={this.props.deleteEvent}
                 />
             )
         }) :
-        <h3>There are no events, yet.</h3>;
+        <h3>You have no notes</h3>;
     
         
     return (
