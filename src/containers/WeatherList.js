@@ -9,6 +9,9 @@ class WeatherList extends Component {
     }
 
     renderWeather (){
+        //debugger
+        if (this.props.weather[0].cod == 200 ) {
+            console.log(this.props.weather[0].name)
        return this.props.weather.map(cityData => {
             const city = cityData.name
             const temp = this.calcFahrenheit(cityData.main.temp)//convert to F
@@ -22,6 +25,10 @@ class WeatherList extends Component {
                 </tr>
             )
         })
+        }
+        else {
+              return ( this.props.weather[0].message)
+        }
     }
 
     

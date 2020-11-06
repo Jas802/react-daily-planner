@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 
 class EventItem extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-
+    
     deleteEvent = (id) => {
         this.props.deleteEvent(id)
     }

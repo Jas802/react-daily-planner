@@ -12,6 +12,8 @@ export const fetchWeather =(city) => {
             return (response.json())
         }).then(data => {
             dispatch(setWeather(data))
+        }).catch(error => {
+            console.log("error!", error);
         })
     }
 }

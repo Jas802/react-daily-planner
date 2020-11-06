@@ -93,8 +93,5 @@ tr {
 .label-month,
 .label-year {
     font-size: 0.em;
-}
-
-.label-month {
     cursor: pointer;
 }

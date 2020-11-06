@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { loadEvents, addEvent, deleteEvent } from '../actions/actionCreators';
 import EventForm from '../components/EventForm';
 import EventList from '../components/EventList';

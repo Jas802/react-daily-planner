@@ -2,6 +2,10 @@
 @import 'weather.css';
 @import 'event.css';
 
+* {
+    font-family: Tahoma, sans-serif;
+}
+
 .horizontal-list {
     margin: 0;
     padding: 0;
@@ -16,4 +20,13 @@
 }
 .horizontal-list li:hover {
     background-color: skyblue;
+}
+
+.app-welcome h2 {
+    text-align: center;
+    padding: 20px;
+}
+
+.app-welcome p {
+    text-align: center;
 }

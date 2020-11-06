@@ -5,12 +5,11 @@ ul.eventList {
 
 h3.event-default {
     text-align: center;
-    font-family: Tahoma;
+    padding: 10px;
 }
 
 li.event {
     list-style-type: none;
-    font-family: Tahoma;
     font-size: 1.2em;
     padding: 10px 0;
     border-bottom: 1px solid skyblue;
@@ -23,7 +22,7 @@ li.event {
 
 .form-header {
     text-align: center;
-    font-family: Tahoma, sans-serif;
+    padding: 20px;
 }
 
 .event-input {

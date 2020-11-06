@@ -44,42 +44,4 @@ class App extends Component {
   }
 }
 
-// function PrivateRoute({ children, ...props}) {
-//   return (
-    
-//     <Route {...props}
-    
-//       render={(props) => {
-//         //console.log(props.isLoggedIn);
-//         return(
-//           //This is the test of if a user is authenticated:
-//           //fetch an API (your own rails get request or Firebase or Netlify) and return the state of authenticated or unauthenticated
-//           true == true ?
-//           //successfully authenticated:
-//           children :  
-//           //failed the authenticated test:
-//           <Redirect 
-//           to={{
-//             pathname: "/",
-//             state: { from: props.location }
-//           }}
-//           />
-//         )  
-          
-//         }
-//       }
-    
-//     />
-//   )
-// }
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ authenticated }, dispatch);
-// }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     auth: state.auth
-//   }
-// }
-
 export default connect()(App)
