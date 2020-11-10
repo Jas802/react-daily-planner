@@ -1,9 +1,8 @@
 import { LOAD_EVENTS, ADD_EVENT, DELETE_EVENT } from '../actions/actionTypes';
-//TOGGLE_EVENT,
 
 function eventsReducer(state=[], action)
 {
-    switch(action.type) {
+    switch(action.type) { 
         case LOAD_EVENTS:
             return action.events;
 

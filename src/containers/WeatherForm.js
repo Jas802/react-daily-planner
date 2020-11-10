@@ -8,18 +8,18 @@ class WeatherForm extends Component {
     constructor(props) {
     super(props)
 
-    this.state = { term: '' }
+    this.state = { search: '' }
     }
 
     onInputChange = (event) => {
-        this.setState({ term: event.target.value});
+        this.setState({ search: event.target.value});
     }
 
     onFormSubmit = (event) => {
         event.preventDefault();
 
-        this.props.fetchWeather(this.state.term)
-        this.setState({ term: ''})
+        this.props.fetchWeather(this.state.search)
+        this.setState({ search: ''})
     }
 
     render() {
@@ -29,7 +29,7 @@ class WeatherForm extends Component {
                     <input
                         type="text"
                         placeholder="Search a city"
-                        value={this.state.term}
+                        value={this.state.search}
                         onChange={this.onInputChange} 
                     />
                     <span className="input-group-btn">

@@ -9,12 +9,11 @@ class WeatherList extends Component {
     }
 
     renderWeather (){
-        //debugger
         if (this.props.weather[0].cod == 200 ) {
-            console.log(this.props.weather[0].name)
+            //console.log(this.props.weather[0].name)
        return this.props.weather.map(cityData => {
             const city = cityData.name
-            const temp = this.calcFahrenheit(cityData.main.temp)//convert to F
+            const temp = this.calcFahrenheit(cityData.main.temp)
             const description = cityData.weather[0].description 
 
             return (
@@ -31,11 +30,7 @@ class WeatherList extends Component {
         }
     }
 
-    
-    // K * 9/5 - 459.67
-
     render () {
-        //debugger
         return (
             <div>
                 <WeatherForm />
